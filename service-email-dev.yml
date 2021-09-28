@@ -1,0 +1,37 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: service-email
+  cloud:
+    config:
+      uri: http://localhost:9006
+      name: ${spring.application.name}
+      profile: dev
+      label: main
+  mail:
+    default-encoding: utf-8
+    host: smtp.126.com
+#    port: 25
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      starttls.required: true
+    protocol: smtp
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://CloudEurekaServerA:8761/eureka, http://CloudEurekaServerB:8762/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}/${spring.application.name}:${server.port}:@project.version@
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
