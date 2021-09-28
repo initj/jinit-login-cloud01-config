@@ -3,18 +3,12 @@ server:
 spring:
   application:
     name: service-code
-  cloud:
-    config:
-      uri: http://localhost:9006
-      name: ${spring.application.name}
-      profile: dev
-      label: main
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://CloudEurekaServerA:8761/eureka, http://CloudEurekaServerB:8762/eureka
+      defaultZone: http://139.155.46.98:8761/eureka,http://139.155.2.145:8761/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}/${spring.application.name}:${server.port}:@project.version@
@@ -29,6 +23,5 @@ management:
 feign:
   client:
     config:
-      lagou-service-email:
-        connectTimeout: 15000
-        readTimeout: 15000
+      connectTimeout: 15000
+      readTimeout: 15000
