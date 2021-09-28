@@ -3,6 +3,17 @@ server:
 spring:
   application:
     name: service-code
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://139.155.46.98:3306/login-test?useUnicode=true&characterEncoding=utf8
+    username: test
+    password: test@dev
+  jpa:
+    database: MySQL
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 eureka:
   client:
     register-with-eureka: true
